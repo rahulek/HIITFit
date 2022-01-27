@@ -1,15 +1,15 @@
-/// Copyright (c) 2021 Razeware LLC
-///
+/// Copyright (c) 2022 Razeware LLC
+/// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-///
+/// 
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-///
+/// 
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,7 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-///
+/// 
 /// This project and source code may use libraries or frameworks that are
 /// released under various Open-Source licenses. Use of those libraries and
 /// frameworks are governed by their own individual licenses.
@@ -30,23 +30,48 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import SwiftUI
+import Foundation
 
-struct ContentView: View {
-  var body: some View {
-      TabView {
-          WelcomeView()
-          ForEach(0 ..< Exercise.exercises.count) { index in
-              ExerciseView(index: index)
+struct Exercise {
+  let exerciseName: String
+  let videoName: String
+    
+  enum ExerciseEnum: CustomStringConvertible {
+      case squat
+      case stepUp
+      case burpee
+      case sunSalute
+      
+      var description: String {
+          switch self {
+          case .squat:
+              return NSLocalizedString("Squat", comment: "exercise")
+          case .stepUp:
+              return NSLocalizedString("Step Up", comment: "exercise")
+          case .burpee:
+              return NSLocalizedString("Burpee", comment: "exercise")
+          case .sunSalute:
+              return NSLocalizedString("Sun Salute", comment: "yoga stretch")
           }
-          SuccessView()
       }
-      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+  
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+extension Exercise {
+    static let exercises = [
+        Exercise(
+            exerciseName: String(describing: ExerciseEnum.squat),
+            videoName: "squat"),
+        Exercise(
+            exerciseName: String(describing: ExerciseEnum.stepUp),
+            videoName: "step-up"),
+        Exercise(
+            exerciseName: String(describing: ExerciseEnum.burpee),
+            videoName: "burpee"),
+        Exercise(
+            exerciseName: String(describing: ExerciseEnum.sunSalute),
+            videoName: "sun-salute")
+    ]
 }
+

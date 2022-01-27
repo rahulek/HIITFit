@@ -26,7 +26,7 @@
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 /// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERImage("step-up")WISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
@@ -34,7 +34,36 @@ import SwiftUI
 
 struct WelcomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                HeaderView(titleText: NSLocalizedString("Welcome", comment: "greeting"))
+                Spacer()
+                Button(NSLocalizedString("History", comment: "view user activity")) {}
+                    .padding(.bottom)
+            }
+            VStack {
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading) {
+                        Text(NSLocalizedString("Get Fit", comment: "invitation to exercise"))
+                            .font(.largeTitle)
+                        Text("with the high intensity interval training")
+                            .font(.headline)
+                    }
+                    Image("step-up")
+                        .resizedToFill(width: 240, height: 240)
+                        .clipShape(Circle())
+                }
+                Button(action: {}) {
+                    Text(NSLocalizedString("Get Started", comment: "invitation"))
+                    Image(systemName: "arrow.right.circle")
+
+                }.font(.title2)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.gray, lineWidth: 2))
+            }
+        }
     }
 }
 
